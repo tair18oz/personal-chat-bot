@@ -20,7 +20,7 @@ export default function App() {
     return (
         <div className="chat-container">
             <div className="messages-container">
-                <h4>the most wowest app in the world</h4>
+                <h2>the most wowest app in the world</h2>
                 {messages.map((message, i) =>
                     message.role === "user" ? (
                         <UserMessage key={i} index={i} messages={messages} />
