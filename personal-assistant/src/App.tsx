@@ -4,12 +4,12 @@ import UserInput from "./Components/UserInput";
 import AiMessage from "./Components/AiMessage";
 import UserMessage from "./Components/UserMessage";
 
-export default function App() {
-    type message = {
-        role: string;
-        content: string;
-    }[];
+export type message = {
+    role: string;
+    content: string;
+}[];
 
+export default function App() {
     const [userQuestion, setUserQuestion] = useState<string>("");
     const [messages, setMessages] = useState<message>([
         { role: "user", content: "wow" },
