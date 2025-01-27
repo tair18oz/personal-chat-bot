@@ -4,14 +4,15 @@ import UserInput from "./Components/UserInput";
 import AiMessage from "./Components/AiMessage";
 import UserMessage from "./Components/UserMessage";
 
-export type message = {
+type message = {
     role: string;
     content: string;
-}[];
+};
+export type Messages = message[];
 
 export default function App() {
     const [userQuestion, setUserQuestion] = useState<string>("");
-    const [messages, setMessages] = useState<message>([
+    const [messages, setMessages] = useState<Messages>([
         { role: "user", content: "wow" },
         { role: "assistant", content: "another wow" },
     ]);
@@ -20,13 +21,13 @@ export default function App() {
     <>
       {messages.map((message, i) =>
         i % 2 === 0 ? (
-          <UserMessage setMessages={setMessages} />
+          <UserMessage index={i} messages={messages}  />
         ) : (
-          <AiMessage setMessages={setMessages} />
+          <AiMessage index={i} messages={messages} />
         )
       )}
 
-            <UserInput setUserQuestion={setUserQuestion} setMessages={setMessages} />
+            <UserInput setUserQuestion={setUserQuestion} setMessages={setMessages} userQuestion={userQuestion} />
         </>
     );
 }

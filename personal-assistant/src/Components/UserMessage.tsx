@@ -1,14 +1,15 @@
-import { message } from "../App";
+import { Messages } from "../App";
 
 interface userMessageProps {
-    setMessages: message
+  index: number;
+    messages: Messages
 }
 
-const UserMessage = ({ setMessages }:userMessageProps) => {
+const UserMessage = ({ index, messages }:userMessageProps) => {
   return (
     <>
-      <h1>user</h1>
-    </>
+      <h1>User: {messages[index].content}</h1>
+      </>
   );
 };
 export default UserMessage;
