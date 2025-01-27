@@ -18,12 +18,19 @@ export default function App() {
     ]);
 
     return (
-        <>
-            {messages.map((message, i) =>
-                i % 2 === 0 ? <UserMessage index={i} messages={messages} /> : <AiMessage index={i} messages={messages} />
-            )}
-
-            <UserInput setUserQuestion={setUserQuestion} setMessages={setMessages} userQuestion={userQuestion} />
-        </>
+        <div className="chat-container">
+            <div className="messages-container">
+                {messages.map((message, i) =>
+                    message.role === "user" ? (
+                        <UserMessage key={i} index={i} messages={messages} />
+                    ) : (
+                        <AiMessage key={i} index={i} messages={messages} />
+                    )
+                )}
+            </div>
+            <div className="input-section">
+                <UserInput setUserQuestion={setUserQuestion} setMessages={setMessages} userQuestion={userQuestion} />
+            </div>
+        </div>
     );
 }

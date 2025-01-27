@@ -22,11 +22,12 @@ const UserInput = ({ setUserQuestion, setMessages, userQuestion }: UserInputProp
     return (
         <>
             <form>
-                <label htmlFor="UserMessage">enter your question</label>
                 <br />
                 <input type="text" id="UserMessage" name="UserMessage" onChange={(e) => setUserQuestion(e.target.value)} />
                 <br />
+                <br />
                 <button onClick={(e) => handleAsk(e)}>ask</button>
+                <br />
             </form>
         </>
     );

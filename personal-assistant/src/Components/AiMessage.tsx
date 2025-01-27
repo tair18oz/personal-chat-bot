@@ -6,10 +6,6 @@ interface AiMessageProps {
 }
 
 const AiMessage = ({ index, messages }: AiMessageProps) => {
-    return (
-        <>
-            <h1>AI: {messages[index].content}</h1>
-        </>
-    );
+    return <div className="ai-message">{messages[index].content}</div>;
 };
 export default AiMessage;
