@@ -1,15 +1,11 @@
 import { Messages } from "../App";
 
 interface userMessageProps {
-  index: number;
-    messages: Messages
+    index: number;
+    messages: Messages;
 }
 
-const UserMessage = ({ index, messages }:userMessageProps) => {
-  return (
-    <>
-      <h1>User: {messages[index].content}</h1>
-      </>
-  );
+const UserMessage = ({ index, messages }: userMessageProps) => {
+    return <div className="user-message"> {messages[index].content}</div>;
 };
 export default UserMessage;

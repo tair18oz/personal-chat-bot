@@ -1,42 +1,115 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Chat container */
+.chat-container {
+    width: 90%; /* כעת יש לך 90% רוחב */
+    max-width: 1000px; /* רוחב מקסימלי כדי למנוע חיתוך */
+    height: 80vh; /* גובה מותאם כך שיתפוס כ-80% מהמסך */
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 20px;
+    font-size: 1.2rem;
+    position: relative;
+    min-width: 350px; /* הוספת רוחב מינימלי במקרה של מסכים מאוד צרים */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Messages container */
+.messages-container {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #e5ddd5;
+    border-radius: 10px;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.card {
-  padding: 2em;
+/* User message */
+.user-message {
+    align-self: flex-end;
+    max-width: 70%;
+    background-color: #dcf8c6;
+    color: #000000;
+    padding: 15px;
+    border-radius: 15px 15px 0 15px;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.read-the-docs {
-  color: #888;
+/* AI message */
+.ai-message {
+    align-self: flex-start;
+    max-width: 70%;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 15px;
+    border-radius: 15px 15px 15px 0;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    word-wrap: break-word;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+/* Input section */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* מרכז את ה-input והכפתור */
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-top: 1px solid #ddd;
+    border-radius: 0 0 20px 20px;
+    gap: 15px; /* רווח ברור יותר בין ה-input לכפתור */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-section input {
+    width: 80%; /* צמצמנו את הרוחב של ה-input */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    font-size: 1.4rem;
+    background-color: #f7f7f7; /* צבע רך שמתאים לשאר הצבעים */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+}
+
+.input-section input:focus {
+    border-color: #25d366; /* שינוי צבע גבול כאשר יש פוקוס */
+}
+
+.input-section button {
+    width: 80%; /* רוחב הכפתור יתאם לרוחב ה-input */
+    background-color: #dcf8c6; /* צבע של הודעת המשתמש */
+    color: #000000;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.input-section button:hover {
+    background-color: #cdeec0;
 }
