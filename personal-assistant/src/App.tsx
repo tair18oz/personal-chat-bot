@@ -4,12 +4,11 @@ import UserInput from "./Components/UserInput";
 import AiMessage from "./Components/AiMessage";
 import UserMessage from "./Components/UserMessage";
 
-type Message = {
+type message = {
     role: string;
     content: string;
 };
-
-export type Messages = Message[];
+export type Messages = message[];
 
 export default function App() {
     const [userQuestion, setUserQuestion] = useState<string>("");
@@ -24,7 +23,7 @@ export default function App() {
                 i % 2 === 0 ? <UserMessage index={i} messages={messages} /> : <AiMessage index={i} messages={messages} />
             )}
 
-            <UserInput setUserQuestion={setUserQuestion} setMessages={setMessages} />
+            <UserInput setUserQuestion={setUserQuestion} setMessages={setMessages} userQuestion={userQuestion} />
         </>
     );
 }

@@ -1,30 +1,33 @@
 import React from "react";
 import { Messages } from "../App";
 
-interface UserInput {
+interface UserInputProps {
     setUserQuestion: React.Dispatch<React.SetStateAction<string>>;
     setMessages: React.Dispatch<React.SetStateAction<Messages>>;
+    userQuestion: string;
 }
 
-const UserInput = ({ setUserQuestion, setMessages }) => {
-    const handleAsk = (e) => {
-        setUserQuestion(e.target.value);
-        setMessages((prev: Messages[]) => [
+const UserInput = ({ setUserQuestion, setMessages, userQuestion }: UserInputProps) => {
+    const handleAsk = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        setMessages((prev: Messages) => [
             ...prev,
             {
                 role: "user",
-                content: e.target.value,
+                content: userQuestion,
             },
         ]);
     };
 
     return (
         <>
-            <label htmlFor="UserMessage">enter your question</label>
-            <br />
-            <input type="text" id="UserMessage" name="UserMessage" />
-            <br />
-            <button onClick={(e) => handleAsk(e)}>ask</button>
+            <form>
+                <label htmlFor="UserMessage">enter your question</label>
+                <br />
+                <input type="text" id="UserMessage" name="UserMessage" onChange={(e) => setUserQuestion(e.target.value)} />
+                <br />
+                <button onClick={(e) => handleAsk(e)}>ask</button>
+            </form>
         </>
     );
 };

@@ -8,7 +8,7 @@ interface userMessageProps {
 const UserMessage = ({ index, messages }: userMessageProps) => {
     return (
         <>
-            <p>{messages[index].content}</p>
+            <h1>User: {messages[index].content}</h1>
         </>
     );
 };

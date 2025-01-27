@@ -8,7 +8,7 @@ interface AiMessageProps {
 const AiMessage = ({ index, messages }: AiMessageProps) => {
     return (
         <>
-            <p>{messages[index].content}</p>
+            <h1>AI: {messages[index].content}</h1>
         </>
     );
 };
