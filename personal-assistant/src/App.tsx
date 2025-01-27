@@ -5,16 +5,16 @@ import AiMessage from "./Components/AiMessage";
 import UserMessage from "./Components/UserMessage";
 
 export type message = {
-  role: string;
-  content: string;
+    role: string;
+    content: string;
 }[];
 
-const App = () => {
-  const [userQuestion, setUserQuestion] = useState<string>("");
-  const [messages, setMessages] = useState<message>([
-    { role: "user", content: "wow" },
-    { role: "assistant", content: "another wow" },
-  ]);
+export default function App() {
+    const [userQuestion, setUserQuestion] = useState<string>("");
+    const [messages, setMessages] = useState<message>([
+        { role: "user", content: "wow" },
+        { role: "assistant", content: "another wow" },
+    ]);
 
   return (
     <>
@@ -26,9 +26,7 @@ const App = () => {
         )
       )}
 
-      <UserInput setUserQuestion={setUserQuestion} setMessages={setMessages} />
-    </>
-  );
-};
-
-export default App;
+            <UserInput setUserQuestion={setUserQuestion} setMessages={setMessages} />
+        </>
+    );
+}
