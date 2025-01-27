@@ -1,14 +1,15 @@
-import { message } from "../App";
+import { Messages } from "../App";
 
 interface AiMessageProps {
-    setMessages: message
+    index: number;
+    messages: Messages;
 }
 
-const AiMessage = ({ setMessages }:AiMessageProps) => {
-  return (
-    <>
-      <h1>AI</h1>
-    </>
-  );
+const AiMessage = ({ index, messages }: AiMessageProps) => {
+    return (
+        <>
+            <p>{messages[index].content}</p>
+        </>
+    );
 };
 export default AiMessage;
