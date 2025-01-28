@@ -7,8 +7,9 @@ import { createClient } from "@supabase/supabase-js";
 import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 import { OpenAIEmbeddings } from "@langchain/openai";
 import * as dotenv from "dotenv";
+import "./App.css";
 
-// dotenv.config();
+dotenv.config();
 
 type message = {
   role: string;
