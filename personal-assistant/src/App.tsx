@@ -1,8 +1,7 @@
-import { useState } from "react";
-import "./App.css";
 import UserInput from "./Components/UserInput";
 import AiMessage from "./Components/AiMessage";
 import UserMessage from "./Components/UserMessage";
+import { useState } from "react";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { createClient } from "@supabase/supabase-js";
 import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
@@ -53,19 +52,6 @@ try {
   });
 
   await vectorStore.addDocuments(output);
-  //   const vectorStore = new SupabaseVectorStore(embeddings, {
-  //     client: supabaseClient,
-  //     tableName: "details",
-  //     queryName: "match_information",
-  //   });
-
-  //   await vectorStore.addDocuments(output);
-
-  // const sbApiKey = import.meta.env.VITE_SUPABASE_API_KEY_CHEN;
-  // const sbUrl = import.meta.env.VITE_SUPABASE_URL_CHEN;
-  // const openAIApiKey = import.meta.env.VITE_OPENAI_API_KEY;
-
-  // const client = createClient(sbUrl, sbApiKey);
 } catch (err) {
   console.log(err);
 }
