@@ -9,8 +9,8 @@ import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase"
 import { OpenAIEmbeddings } from "@langchain/openai";
 
 type message = {
-    role: string;
-    content: string;
+  role: string;
+  content: string;
 };
 export type Messages = message[];
 
@@ -44,27 +44,31 @@ try {
 }
 
 export default function App() {
-    const [userQuestion, setUserQuestion] = useState<string>("");
-    const [messages, setMessages] = useState<Messages>([
-        { role: "user", content: "wow" },
-        { role: "assistant", content: "another wow" },
-    ]);
+  const [userQuestion, setUserQuestion] = useState<string>("");
+  const [messages, setMessages] = useState<Messages>([
+    { role: "user", content: "wow" },
+    { role: "assistant", content: "another wow" },
+  ]);
 
-    return (
-        <div className="chat-container">
-            <div className="messages-container">
-                <h2>the most wowest app in the world</h2>
-                {messages.map((message, i) =>
-                    message.role === "user" ? (
-                        <UserMessage key={i} index={i} messages={messages} />
-                    ) : (
-                        <AiMessage key={i} index={i} messages={messages} />
-                    )
-                )}
-            </div>
-            <div className="input-section">
-                <UserInput setUserQuestion={setUserQuestion} setMessages={setMessages} userQuestion={userQuestion} />
-            </div>
-        </div>
-    );
+  return (
+    <div className="chat-container">
+      <div className="messages-container">
+        <h2>the most wowest app in the world</h2>
+        {messages.map((message, i) =>
+          message.role === "user" ? (
+            <UserMessage key={i} index={i} messages={messages} />
+          ) : (
+            <AiMessage key={i} index={i} messages={messages} />
+          )
+        )}
+      </div>
+      <div className="input-section">
+        <UserInput
+          setUserQuestion={setUserQuestion}
+          setMessages={setMessages}
+          userQuestion={userQuestion}
+        />
+      </div>
+    </div>
+  );
 }

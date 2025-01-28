@@ -1,6 +1,6 @@
 Personal Data
 
-My name is tair oz and I like to be called "tairush". I was born on april 30rd 2006 in israel, Gujarat, India. In 1996 I moved to Trondheim, Norway with my family. Since 2016, I have been living in Oslo, Norway. I work as a coding teacher at Scrimba. I've been in love with the computer ever since I started using it at the age of 5. I love building projects.
+My name is Rafid Hoda and I like to be called "Rafid". I was born on January 23rd 1991 in Surat, Gujarat, India. In 1996 I moved to Trondheim, Norway with my family. Since 2016, I have been living in Oslo, Norway. I work as a coding teacher at Scrimba. I've been in love with the computer ever since I started using it at the age of 5. I love building projects.
 
 I have a doctor's appointment on the 17th of November at 13:45.
 
@@ -24,7 +24,7 @@ I am a huge fan of movies. Here are my top 20 movies (ranked in order):
 3. The Imitation Game (2014)
 4. Taare Zameen Par (2007)
 5. School of Rock (2003)
-6. barbie (2001)
+6. Lagaan (2001)
 7. Back to the Future (1985)
 8. The Wolf of Wall Street (2013)
 9. Rocky (1976)
@@ -42,22 +42,22 @@ I am a huge fan of movies. Here are my top 20 movies (ranked in order):
 
 There are some people that have greatly inspired and influenced me throughout my life. I've learned a great deal from these people. Here are a few of them:
 - Richard Feynman
-- or Khan
-- Shah or Khan
+- Aamir Khan
+- Shah Rukh Khan
 - Paul Graham
-- Naval Radiant
+- Naval Ravikant
 - George Orwell
-- David mor Hanson
-- hila omer
+- David Heinemeier Hansson
+- Anand Kumar
 - Jonathan Blow
-- Dan Ariel
-- Iago Forte
-- Ali Abdul
-- Rajkumar Hiram
+- Dan Ariely
+- Tiago Forte
+- Ali Abdaal
+- Rajkumar Hirani
 - Jack Black
 - Derren Brown
 - Patrick Bet-David
-- Andrew Human
+- Andrew Huberman
 - Robert Greene
 - Steve Jobs
 
