@@ -35,7 +35,7 @@ try {
 
     const client = createClient(sbUrl, sbApiKey);
 
-    await SupabaseVectorStore.fromDocuments(output, new OpenAIEmbeddings({ openAIApiKey }), {
+    await SupabaseVectorStore.fromInformation(output, new OpenAIEmbeddings({ openAIApiKey }), {
         client,
         tableName: "information",
     });
