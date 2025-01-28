@@ -7,6 +7,9 @@ import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { createClient } from "@supabase/supabase-js";
 import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 import { OpenAIEmbeddings } from "@langchain/openai";
+import * as dotenv from "dotenv";
+
+// dotenv.config();
 
 type message = {
   role: string;
@@ -15,32 +18,56 @@ type message = {
 export type Messages = message[];
 
 try {
-    const result = await fetch("/info.txt");
-    console.log("result: ", result);
-    const text = await result.text();
-    console.log("text: ", text);
+  const result = await fetch("../public/info.txt");
+  console.log("result: ", result);
+  const text = await result.text();
+  console.log("text: ", text);
 
-    const splitter = new RecursiveCharacterTextSplitter({
-        chunkSize: 350,
-        separators: ["\n\n", "\n", " ", ""],
-        chunkOverlap: 100,
-    });
+  const splitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 350,
+    separators: ["\n\n", "\n", " ", ""],
+    chunkOverlap: 100,
+  });
 
-    const output = await splitter.createDocuments([text]);
-    console.log("output:", output);
+  const output = await splitter.createDocuments([text]);
+  console.log("output:", output);
+  const embeddings = new OpenAIEmbeddings({
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+    model: "text-embedding-3-small",
+  });
 
-    const sbApiKey = process.env.VITE_SUPABASE_API_KEY_TAIR;
-    const sbUrl = process.env.VITE_SUPABASE_URL_TAIR;
-    const openAIApiKey = process.env.VITE_OPENAI_API_KEY;
+  const supabaseClient = createClient(
+    import.meta.env.VITE_SUPABASE_URL_CHEN,
+    import.meta.env.VITE_SUPABASE_API_KEY_CHEN
+  );
+  console.log("Supabase URL:", import.meta.env.VITE_SUPABASE_URL_CHEN);
+  console.log(
+    "Supabase Private Key:",
+    import.meta.env.VITE_SUPABASE_API_KEY_CHEN
+  );
 
-    const client = createClient(sbUrl, sbApiKey);
+  const vectorStore = new SupabaseVectorStore(embeddings, {
+    client: supabaseClient,
+    tableName: "detailes",
+    queryName: "match_detailes",
+  });
 
-    await SupabaseVectorStore.fromDocuments(output, new OpenAIEmbeddings({ openAIApiKey }), {
-        client,
-        tableName: "information",
-    });
+  await vectorStore.addDocuments(output);
+  //   const vectorStore = new SupabaseVectorStore(embeddings, {
+  //     client: supabaseClient,
+  //     tableName: "details",
+  //     queryName: "match_information",
+  //   });
+
+  //   await vectorStore.addDocuments(output);
+
+  // const sbApiKey = import.meta.env.VITE_SUPABASE_API_KEY_CHEN;
+  // const sbUrl = import.meta.env.VITE_SUPABASE_URL_CHEN;
+  // const openAIApiKey = import.meta.env.VITE_OPENAI_API_KEY;
+
+  // const client = createClient(sbUrl, sbApiKey);
 } catch (err) {
-    console.log(err);
+  console.log(err);
 }
 
 export default function App() {

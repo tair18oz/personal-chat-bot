@@ -12,6 +12,7 @@
   "dependencies": {
     "@langchain/community": "^0.3.27",
     "@supabase/supabase-js": "^2.48.1",
+    "dotenv": "^16.4.7",
     "langchain": "^0.3.13",
     "openai": "^4.80.1",
     "react": "^18.3.1",
