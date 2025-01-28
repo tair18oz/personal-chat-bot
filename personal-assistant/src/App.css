@@ -1,4 +1,3 @@
-/* General styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -11,14 +10,13 @@ body {
     height: 100vh;
 }
 
-.h4 {
+.h2 {
     color: #000000;
 }
 
-/* Chat container */
 .chat-container {
-    width: 750px; /* רוחב מקסימלי כדי למנוע חיתוך */
-    height: 80vh; /* גובה מותאם כך שיתפוס כ-80% מהמסך */
+    width: 750px;
+    height: 80vh;
     background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -28,10 +26,9 @@ body {
     padding: 20px;
     font-size: 1.2rem;
     position: relative;
-    min-width: 350px; /* הוספת רוחב מינימלי במקרה של מסכים מאוד צרים */
+    min-width: 380px;
 }
 
-/* Messages container */
 .messages-container {
     flex: 1;
     padding: 15px;
@@ -44,7 +41,6 @@ body {
     box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* User message */
 .user-message {
     align-self: flex-end;
     max-width: 70%;
@@ -58,7 +54,6 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* AI message */
 .ai-message {
     align-self: flex-start;
     max-width: 70%;
@@ -71,24 +66,23 @@ body {
     word-wrap: break-word;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
-/* Input section */
 .input-section {
     display: flex;
     flex-direction: column;
-    align-items: center; /* מרכז את ה-input והכפתור */
+    align-items: center;
     padding: 20px;
     color: #000000;
 
     background-color: #f0f0f0;
     border-top: 1px solid #ddd;
     border-radius: 0 0 20px 20px;
-    gap: 15px; /* רווח ברור יותר בין ה-input לכפתור */
+    gap: 15px;
     width: 100%;
     box-sizing: border-box;
 }
 
 .input-section input {
-    width: 80%; /* צמצמנו את הרוחב של ה-input */
+    width: 80%;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 25px;
@@ -96,18 +90,18 @@ body {
     color: #000000;
 
     font-size: 1.4rem;
-    background-color: #f7f7f7; /* צבע רך שמתאים לשאר הצבעים */
+    background-color: #f7f7f7;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s ease;
 }
 
 .input-section input:focus {
-    border-color: #25d366; /* שינוי צבע גבול כאשר יש פוקוס */
+    border-color: #25d366;
 }
 
 .input-section button {
-    width: 80%; /* רוחב הכפתור יתאם לרוחב ה-input */
-    background-color: #dcf8c6; /* צבע של הודעת המשתמש */
+    width: 80%;
+    background-color: #dcf8c6;
     color: #000000;
     padding: 15px;
     border: none;
