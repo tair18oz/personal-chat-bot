@@ -10,6 +10,7 @@ interface UserInputProps {
 const UserInput = ({ setUserQuestion, setMessages, userQuestion }: UserInputProps) => {
     const handleAsk = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
+        setUserQuestion(" ");
         setMessages((prev: Messages) => [
             ...prev,
             {
@@ -23,7 +24,7 @@ const UserInput = ({ setUserQuestion, setMessages, userQuestion }: UserInputProp
         <>
             <form>
                 <br />
-                <input type="text" id="UserMessage" name="UserMessage" onChange={(e) => setUserQuestion(e.target.value)} />
+                <input type="text" id="UserMessage" name="UserMessage" value={userQuestion} onChange={(e) => setUserQuestion(e.target.value)} />
                 <br />
                 <br />
                 <button onClick={(e) => handleAsk(e)}>ask</button>
