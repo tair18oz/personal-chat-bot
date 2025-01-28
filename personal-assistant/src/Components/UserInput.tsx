@@ -1,6 +1,5 @@
 import React from "react";
 import { Messages } from "../App";
-
 interface UserInputProps {
   setUserQuestion: React.Dispatch<React.SetStateAction<string>>;
   setMessages: React.Dispatch<React.SetStateAction<Messages>>;

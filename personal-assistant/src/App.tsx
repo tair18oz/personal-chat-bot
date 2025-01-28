@@ -3,6 +3,8 @@ import "./App.css";
 import UserInput from "./Components/UserInput";
 import AiMessage from "./Components/AiMessage";
 import UserMessage from "./Components/UserMessage";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { createClient } from "@supabase/supabase-js";
 import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 import { OpenAIEmbeddings } from "@langchain/openai";
 
@@ -12,40 +14,33 @@ type message = {
 };
 export type Messages = message[];
 
-import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
-import { createClient } from "@supabase/supabase-js";
-
 try {
-  const result = await fetch("/info.txt");
-  const text = await result.text();
+    const result = await fetch("/info.txt");
+    console.log("result: ", result);
+    const text = await result.text();
+    console.log("text: ", text);
 
-  const splitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 350,
-    separators: ["\n\n", "\n", " ", "", "##"], // default setting
-    chunkOverlap: 100,
-  });
+    const splitter = new RecursiveCharacterTextSplitter({
+        chunkSize: 350,
+        separators: ["\n\n", "\n", " ", ""],
+        chunkOverlap: 100,
+    });
 
-  const output = await splitter.createDocuments([text]);
-  console.log(output);
+    const output = await splitter.createDocuments([text]);
+    console.log("output:", output);
 
-  const sbApiKey = process.env.VITE_SUPABASE_API_KEY_CHEN;
-  const sbUrl = process.env.VITE_SUPABASE_URL_CHEN;
-  const openAIApiKey = process.env.VITE_OPENAI_API_KEY;
+    const sbApiKey = process.env.VITE_SUPABASE_API_KEY_TAIR;
+    const sbUrl = process.env.VITE_SUPABASE_URL_TAIR;
+    const openAIApiKey = process.env.VITE_OPENAI_API_KEY;
 
-  const client = createClient(sbUrl, sbApiKey);
+    const client = createClient(sbUrl, sbApiKey);
 
-  
-
-//   await SupabaseVectorStore.fromInformation(
-//     output,
-//     new OpenAIEmbeddings({ openAIApiKey }),
-//     {
-//       client,
-//       tableName: "information",
-//     }
-//   );
+    await SupabaseVectorStore.fromDocuments(output, new OpenAIEmbeddings({ openAIApiKey }), {
+        client,
+        tableName: "information",
+    });
 } catch (err) {
-  console.log(err);
+    console.log(err);
 }
 
 export default function App() {
