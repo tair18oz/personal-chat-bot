@@ -116,8 +116,6 @@ const UserInput = ({
         </button>
         <br />
       </form>
-
-      {/* {loading ? <p>Loading answer...</p> : <p>{response}</p>} */}
     </>
   );
 };
