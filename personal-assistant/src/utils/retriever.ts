@@ -11,8 +11,8 @@ const client = createClient(sbUrl, sbApiKey);
 
 const vectorStore = new SupabaseVectorStore(embeddings, {
     client,
-    tableName: "documents",
-    queryName: "match_documents",
+    tableName: "detailes",
+    queryName: "match_detailes",
 });
 
 const retriever = vectorStore.asRetriever();
