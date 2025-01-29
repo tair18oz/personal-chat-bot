@@ -2,20 +2,13 @@ import UserInput from "./Components/UserInput";
 import AiMessage from "./Components/AiMessage";
 import UserMessage from "./Components/UserMessage";
 import { useState } from "react";
+import "./App.css";
 // import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 // import { createClient } from "@supabase/supabase-js";
 // import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 // import { OpenAIEmbeddings } from "@langchain/openai";
 import "./App.css";
 // import * as dotenv from "dotenv";
-
-// dotenv.config();
-
-type message = {
-  role: string;
-  content: string;
-};
-export type Messages = message[];
 
 // try {
 //     const result = await fetch("../public/info.txt");
@@ -50,6 +43,12 @@ export type Messages = message[];
 // } catch (err) {
 //     console.log(err);
 // }
+
+type message = {
+  role: string;
+  content: string;
+};
+export type Messages = message[];
 
 export default function App() {
   const [userQuestion, setUserQuestion] = useState<string>("");

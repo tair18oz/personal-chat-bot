@@ -7,7 +7,7 @@ import {
   RunnablePassthrough,
   RunnableSequence,
 } from "@langchain/core/runnables";
-import { retriever } from "../utils/retriever";
+import retriever from "../utils/retriever";
 import { combineDocuments } from "../utils/combineDocuments";
 
 interface UserInputProps {
