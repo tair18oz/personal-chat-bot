@@ -2,17 +2,17 @@ import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase"
 import { OpenAIEmbeddings } from "@langchain/openai";
 import { createClient } from "@supabase/supabase-js";
 
-const openAIApiKey = process.env.OPENAI_API_KEY;
+const openAIApiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
 const embeddings = new OpenAIEmbeddings({ openAIApiKey });
-const sbApiKey = process.env.SUPABASE_API_KEY;
-const sbUrl = process.env.SUPABASE_URL_LC_CHATBOT;
-const client = createClient(sbUrl, sbApiKey);
+const sbKey = import.meta.env.VITE_SUPABASE_API_KEY_CHEN;
+const sbUrl = import.meta.env.VITE_SUPABASE_URL_CHEN;
+const client = createClient(sbUrl, sbKey);
 
 const vectorStore = new SupabaseVectorStore(embeddings, {
-    client,
-    tableName: "detailes",
-    queryName: "match_detailes",
+  client,
+  tableName: "detailes",
+  queryName: "match_detailes",
 });
 
 const retriever = vectorStore.asRetriever();

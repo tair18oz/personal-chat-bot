@@ -7,9 +7,9 @@ import { useState } from "react";
 // import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 // import { OpenAIEmbeddings } from "@langchain/openai";
 import "./App.css";
-import * as dotenv from "dotenv";
+// import * as dotenv from "dotenv";
 
-dotenv.config();
+// dotenv.config();
 
 type message = {
   role: string;
