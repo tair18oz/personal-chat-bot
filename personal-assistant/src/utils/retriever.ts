@@ -5,17 +5,17 @@ import { createClient } from "@supabase/supabase-js";
 const openAIApiKey = import.meta.env.VITE_OPENAI_API_KEY;
 
 const embeddings = new OpenAIEmbeddings({
-  openAIApiKey,
-  model: "text-embedding-3-small",
+    openAIApiKey,
+    model: "text-embedding-3-small",
 });
-const sbKey = import.meta.env.VITE_SUPABASE_API_KEY_CHEN;
-const sbUrl = import.meta.env.VITE_SUPABASE_URL_CHEN;
+const sbKey = import.meta.env.VITE_SUPABASE_API_KEY_TAIR;
+const sbUrl = import.meta.env.VITE_SUPABASE_URL_TAIR;
 const client = createClient(sbUrl, sbKey);
 
 const vectorStore = new SupabaseVectorStore(embeddings, {
-  client,
-  tableName: "detailes",
-  queryName: "match_detailes",
+    client,
+    tableName: "detailes",
+    queryName: "match_detailes",
 });
 
 const retriever = vectorStore.asRetriever();
