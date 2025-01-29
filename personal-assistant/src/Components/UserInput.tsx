@@ -49,6 +49,7 @@ const UserInput = async ({ setUserQuestion, setMessages, userQuestion }: UserInp
 
     console.log(response);
 
+    //המחשב של חן מעאפן!!!
     const handleAsk = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         setUserQuestion("");
