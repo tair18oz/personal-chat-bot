@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Messages } from "../App";
 import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { RunnablePassthrough, RunnableSequence } from "@langchain/core/runnables";
-import { retriever } from "../utils/retriever";
+import retriever from "../utils/retriever";
 import { combineDocuments } from "../utils/combineDocuments";
 
 interface UserInputProps {
@@ -12,10 +12,14 @@ interface UserInputProps {
     setMessages: React.Dispatch<React.SetStateAction<Messages>>;
     userQuestion: string;
 }
-const openAIApiKey = process.env.OPENAI_API_KEY;
+
+const openAIApiKey = import.meta.env.VITE_OPENAI_API_KEY;
 const llm = new ChatOpenAI({ openAIApiKey });
 
-const UserInput = async ({ setUserQuestion, setMessages, userQuestion }: UserInputProps) => {
+const UserInput = ({ setUserQuestion, setMessages, userQuestion }: UserInputProps) => {
+    const [loading, setLoading] = useState(false);
+    const [response, setResponse] = useState<string>("");
+
     const standaloneQuestionTemplate = "Given a question, convert it to a standalone question. question: {question} standalone question:";
     const standaloneQuestionPrompt = PromptTemplate.fromTemplate(standaloneQuestionTemplate);
 
@@ -43,16 +47,11 @@ const UserInput = async ({ setUserQuestion, setMessages, userQuestion }: UserInp
         answerChain,
     ]);
 
-    const response = await chain.invoke({
-        question: "What are the technical requirements for running Scrimba? I only have a very old laptop which is not that powerful.",
-    });
-
-    console.log(response);
-
-    //המחשב של חן מעאפן!!!
-    const handleAsk = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleAsk = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         setUserQuestion("");
+        setLoading(true);
+
         setMessages((prev: Messages) => [
             ...prev,
             {
@@ -60,6 +59,18 @@ const UserInput = async ({ setUserQuestion, setMessages, userQuestion }: UserInp
                 content: userQuestion,
             },
         ]);
+
+        try {
+            const response = await chain.invoke({
+                question: userQuestion,
+            });
+            setResponse(response);
+        } catch (error) {
+            console.error("Error during question processing:", error);
+            setResponse("I'm sorry, there was an error processing your question.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -69,10 +80,15 @@ const UserInput = async ({ setUserQuestion, setMessages, userQuestion }: UserInp
                 <input type="text" id="UserMessage" name="UserMessage" value={userQuestion} onChange={(e) => setUserQuestion(e.target.value)} />
                 <br />
                 <br />
-                <button onClick={(e) => handleAsk(e)}>ask</button>
+                <button onClick={(e) => handleAsk(e)} disabled={loading}>
+                    {loading ? "Loading..." : "Ask"}
+                </button>
                 <br />
             </form>
+
+            {loading ? <p>Loading answer...</p> : <p>{response}</p>}
         </>
     );
 };
+
 export default UserInput;

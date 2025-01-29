@@ -2,20 +2,14 @@ import UserInput from "./Components/UserInput";
 import AiMessage from "./Components/AiMessage";
 import UserMessage from "./Components/UserMessage";
 import { useState } from "react";
+import "./App.css";
 // import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 // import { createClient } from "@supabase/supabase-js";
 // import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 // import { OpenAIEmbeddings } from "@langchain/openai";
-import "./App.css";
-import * as dotenv from "dotenv";
+// import * as dotenv from "dotenv";
 
-dotenv.config();
-
-type message = {
-  role: string;
-  content: string;
-};
-export type Messages = message[];
+// dotenv.config();
 
 // try {
 //     const result = await fetch("../public/info.txt");
@@ -51,32 +45,34 @@ export type Messages = message[];
 //     console.log(err);
 // }
 
-export default function App() {
-  const [userQuestion, setUserQuestion] = useState<string>("");
-  const [messages, setMessages] = useState<Messages>([
-    { role: "user", content: "wow" },
-    { role: "assistant", content: "another wow" },
-  ]);
+type message = {
+    role: string;
+    content: string;
+};
+export type Messages = message[];
 
-  return (
-    <div className="chat-container">
-      <div className="messages-container">
-        <h2>the most wowest app in the world</h2>
-        {messages.map((message, i) =>
-          message.role === "user" ? (
-            <UserMessage key={i} index={i} messages={messages} />
-          ) : (
-            <AiMessage key={i} index={i} messages={messages} />
-          )
-        )}
-      </div>
-      <div className="input-section">
-        <UserInput
-          setUserQuestion={setUserQuestion}
-          setMessages={setMessages}
-          userQuestion={userQuestion}
-        />
-      </div>
-    </div>
-  );
+export default function App() {
+    const [userQuestion, setUserQuestion] = useState<string>("");
+    const [messages, setMessages] = useState<Messages>([
+        { role: "user", content: "wow" },
+        { role: "assistant", content: "another wow" },
+    ]);
+
+    return (
+        <div className="chat-container">
+            <div className="messages-container">
+                <h2>the most wowest app in the world</h2>
+                {messages.map((message, i) =>
+                    message.role === "user" ? (
+                        <UserMessage key={i} index={i} messages={messages} />
+                    ) : (
+                        <AiMessage key={i} index={i} messages={messages} />
+                    )
+                )}
+            </div>
+            <div className="input-section">
+                <UserInput setUserQuestion={setUserQuestion} setMessages={setMessages} userQuestion={userQuestion} />
+            </div>
+        </div>
+    );
 }
