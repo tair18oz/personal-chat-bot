@@ -28,12 +28,16 @@ const UserInput = ({ setUserQuestion, setMessages, userQuestion }: UserInputProp
     question: {question}
     answer: `;
     const answerPrompt = PromptTemplate.fromTemplate(answerTemplate);
+    console.log("answerPrompt: ", answerPrompt);
 
     const standaloneQuestionChain = standaloneQuestionPrompt.pipe(llm).pipe(new StringOutputParser());
+    console.log("standaloneQuestionChain: ", standaloneQuestionChain);
 
     const retrieverChain = RunnableSequence.from([(prevResult) => prevResult.standalone_question, retriever, combineDocuments]);
+    console.log("retrieverChain: ", retrieverChain);
 
     const answerChain = answerPrompt.pipe(llm).pipe(new StringOutputParser());
+    console.log("answerChain: ", answerChain);
 
     const chain = RunnableSequence.from([
         {
