@@ -4,7 +4,7 @@ import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { RunnableSequence } from "@langchain/core/runnables";
-import { retriever } from "/utils/retriever";
+import { retriever } from "../utils/retriever";
 import { combineDocuments } from "/utils/combineDocuments";
 
 interface UserInputProps {
