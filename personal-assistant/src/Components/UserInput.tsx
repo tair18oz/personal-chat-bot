@@ -17,7 +17,7 @@ interface UserInputProps {
 }
 
 const openAIApiKey = import.meta.env.VITE_OPENAI_API_KEY;
-const llm = new ChatOpenAI({ openAIApiKey });
+const llm = new ChatOpenAI({ openAIApiKey, model: "gpt-4o-mini" });
 
 const UserInput = ({
   setUserQuestion,
@@ -27,46 +27,46 @@ const UserInput = ({
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<string>("");
 
-  const standaloneQuestionTemplate =
-    "Given a question, convert it to a standalone question. question: {question} standalone question:";
-  const standaloneQuestionPrompt = PromptTemplate.fromTemplate(
-    standaloneQuestionTemplate
-  );
-
-  const answerTemplate = `You are a helpful and enthusiastic support bot who can answer a given question about the user based on the context provided from supabase. Try to find the answer in the context. If you really don't know the answer, say "I'm sorry, I don't know the answer to that." And direct the questioner to email blablabla@gmail.com. Don't try to make up an answer. Always speak as if you were chatting to a friend.
-    context: {context}
-    question: {question}
-    answer: `;
-  const answerPrompt = PromptTemplate.fromTemplate(answerTemplate);
-
-  const standaloneQuestionChain = standaloneQuestionPrompt
-    .pipe(llm)
-    .pipe(new StringOutputParser());
-
-  const retrieverChain = RunnableSequence.from([
-    (prevResult) => prevResult.standalone_question,
-    retriever,
-    combineDocuments,
-  ]);
-
-  const answerChain = answerPrompt.pipe(llm).pipe(new StringOutputParser());
-
-  const chain = RunnableSequence.from([
-    {
-      standalone_question: standaloneQuestionChain,
-      original_input: new RunnablePassthrough(),
-    },
-    {
-      context: retrieverChain,
-      question: ({ original_input }) => original_input.question,
-    },
-    answerChain,
-  ]);
-
   const handleAsk = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
+    const standaloneQuestionTemplate =
+      "Given a question, convert it to a standalone question. question: {question} standalone question:";
+    const standaloneQuestionPrompt = PromptTemplate.fromTemplate(
+      standaloneQuestionTemplate
+    );
+    console.log("standaloneQuestionPrompt: ", standaloneQuestionPrompt);
+
+    const answerTemplate = `You are a helpful and enthusiastic support bot who can answer a given question about the user based on the context provided from supabase. Try to find the answer in the context. If you really don't know the answer, say "I'm sorry, I don't know the answer to that." And direct the questioner to email blablabla@gmail.com. Don't try to make up an answer. Always speak as if you were chatting to a friend.
+    context: {context}
+    question: {question}
+    answer: `;
+    const answerPrompt = PromptTemplate.fromTemplate(answerTemplate);
+
+    const standaloneQuestionChain = standaloneQuestionPrompt
+      .pipe(llm)
+      .pipe(new StringOutputParser());
+
+    const retrieverChain = RunnableSequence.from([
+      (prevResult) => prevResult.standalone_question,
+      retriever,
+      combineDocuments,
+    ]);
+
+    const answerChain = answerPrompt.pipe(llm).pipe(new StringOutputParser());
+
+    const chain = RunnableSequence.from([
+      {
+        standalone_question: standaloneQuestionChain,
+        original_input: new RunnablePassthrough(),
+      },
+      {
+        context: retrieverChain,
+        question: ({ original_input }) => original_input.question,
+      },
+      answerChain,
+    ]);
     setUserQuestion("");
     setLoading(true);
 
